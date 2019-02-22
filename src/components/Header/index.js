@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import { Link } from 'react-router-dom';
 import styles from './index.css';
-import withCssComponent from '../../components/withCssComponent';
+import withStyle from '../../components/withStyle';
 
 class Header extends PureComponent {
   render() {
@@ -17,4 +17,4 @@ class Header extends PureComponent {
   }
 }
 
-export default withCssComponent(styles)(Header);
+export default withStyle(styles)(Header);

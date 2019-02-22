@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { fetchList, fetchTestList } from './store/action';
-import withCssComponent from '../../components/withCssComponent';
+import withStyle from '../../components/withStyle';
 import styles from './index.css';
 
 class Home extends PureComponent {
@@ -31,7 +31,7 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-const ExportHome = withCssComponent(styles)(connect(mapStateToPorps, mapDispatchToProps)(Home));
+const ExportHome = withStyle(styles)(connect(mapStateToPorps, mapDispatchToProps)(Home));
 
 ExportHome.loadData = (store) => {
   // console.log('@@@', store.getState());

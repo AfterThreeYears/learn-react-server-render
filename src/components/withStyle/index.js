@@ -5,9 +5,9 @@ function getDisplayName(WrappedComponent) {
   return WrappedComponent.displayName || WrappedComponent.name || 'Component';
 }
 
-export default function withCssComponent(styles) {
+export default function withStyle(styles) {
   return (WrappedComponent) => {
-    class WithCssComponent extends React.Component {
+    class WithStyleComponent extends React.Component {
       constructor() {
         super(...arguments);
         if (isServer) {
@@ -18,7 +18,7 @@ export default function withCssComponent(styles) {
         return <WrappedComponent {...this.props} />
       }
     }
-    WithCssComponent.displayName = `WithCssComponent(${getDisplayName(WrappedComponent)})`;
-    return WithCssComponent;
+    WithStyleComponent.displayName = `WithStyleComponent(${getDisplayName(WrappedComponent)})`;
+    return WithStyleComponent;
   }
 }
