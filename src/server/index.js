@@ -1,7 +1,7 @@
 import express from 'express';
 import axios from 'axios';
 import { matchRoutes } from "react-router-config";
-import { render } from './utils';
+import { render } from './render';
 import routers from '../Routers';
 import getStore from '../store';
 
@@ -15,7 +15,9 @@ app.get('/list', (req, res) => {
 app.get('*', (req, res) => {
   axios.defaults.headers.cookie = req.get('cookie');
   const store = getStore();
-  const context = {};
+  const context = {
+    css: [],
+  };
   const promises = matchRoutes(routers, req.url)
     .map(router => router.route.loadData)
     .filter(Boolean)
@@ -38,7 +40,8 @@ app.get('*', (req, res) => {
     } else {
       res.end(html);
     }
-  }).catch(() => {
+  }).catch((error) => {
+    console.log('***error:', error);
     res.writeHead(500, {
       "Content-Type": "text/html; charset=utf-8"
     });

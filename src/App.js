@@ -4,7 +4,7 @@ import Header from './components/Header';
 
 export default function App(props) {
   return (<div>
-    <Header />
+    <Header staticContext={props.staticContext} />
     {renderRoutes(props.route.routes)}
   </div>);
 }

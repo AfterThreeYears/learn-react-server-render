@@ -1,10 +1,18 @@
 import React, { PureComponent } from 'react'
 import { Link } from 'react-router-dom';
+import styles from './index.css';
+import { isServer } from '../../utils/env';
 
 export default class Header extends PureComponent {
+  constructor() {
+    super(...arguments);
+    if (isServer) {
+      this.props.staticContext.css.push(styles._getCss());
+    }
+  }
   render() {
     return (
-      <div>
+      <div className={styles.test}>
         Header
         <Link to="/">home</Link>
         <Link to="/login">login</Link>

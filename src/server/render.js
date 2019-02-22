@@ -22,6 +22,7 @@ export function render(store, routers, context, req) {
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <title>Document</title>
+      <style>${context.css.join('\n')}</style>
     </head>
     <body>
       <div id="root">${content}</div>
