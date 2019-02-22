@@ -20,14 +20,6 @@ class Home extends PureComponent {
   }
 }
 
-Home.loadData = (store) => {
-  // console.log('@@@', store.getState());
-  return Promise.all([
-    store.dispatch(fetchTestList()),
-    store.dispatch(fetchList()),
-  ]);
-};
-
 const mapStateToPorps = ({ home: { name, list } }) => ({ name, list });
 
 const mapDispatchToProps = dispatch => ({
@@ -39,4 +31,14 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-export default connect(mapStateToPorps, mapDispatchToProps)(withCssComponent(styles)(Home));
+const ExportHome = withCssComponent(styles)(connect(mapStateToPorps, mapDispatchToProps)(Home));
+
+ExportHome.loadData = (store) => {
+  // console.log('@@@', store.getState());
+  return Promise.all([
+    store.dispatch(fetchTestList()),
+    store.dispatch(fetchList()),
+  ]);
+};
+
+export default ExportHome;
