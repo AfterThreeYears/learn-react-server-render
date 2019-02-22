@@ -1,11 +1,12 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { fetchList } from './store/action';
+import { fetchList, fetchTestList } from './store/action';
 
 class Home extends PureComponent {
   componentDidMount() {
     if (this.props.list.length) return;
     this.props.fetchList();
+    this.props.fetchTestList();
   }
 
   render() {
@@ -19,7 +20,10 @@ class Home extends PureComponent {
 
 Home.loadData = (store) => {
   // console.log('@@@', store.getState());
-  return store.dispatch(fetchList());
+  return Promise.all([
+    store.dispatch(fetchTestList()),
+    store.dispatch(fetchList()),
+  ]);
 };
 
 const mapStateToPorps = ({ home: { name, list } }) => ({ name, list });
@@ -27,6 +31,9 @@ const mapStateToPorps = ({ home: { name, list } }) => ({ name, list });
 const mapDispatchToProps = dispatch => ({
   fetchList() {
     dispatch(fetchList());
+  },
+  fetchTestList() {
+    dispatch(fetchTestList());
   },
 });
 

@@ -8,6 +8,8 @@ export default class Header extends PureComponent {
         Header
         <Link to="/">home</Link>
         <Link to="/login">login</Link>
+        <Link to="/redirect">redirect</Link>
+        <Link to="/404">404</Link>
       </div>
     )
   }
