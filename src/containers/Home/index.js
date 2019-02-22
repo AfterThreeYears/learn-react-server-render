@@ -1,17 +1,10 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { fetchList, fetchTestList } from './store/action';
+import withCssComponent from '../../components/withCssComponent';
 import styles from './index.css';
-import { isServer } from '../../utils/env';
 
 class Home extends PureComponent {
-  constructor() {
-    super(...arguments);
-    if (isServer) {
-      this.props.staticContext.css.push(styles._getCss());
-    }
-  }
-
   componentDidMount() {    
     if (this.props.list.length) return;
     this.props.fetchList();
@@ -46,4 +39,4 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-export default connect(mapStateToPorps, mapDispatchToProps)(Home);
+export default connect(mapStateToPorps, mapDispatchToProps)(withCssComponent(styles)(Home));
